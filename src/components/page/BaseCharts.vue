@@ -11,6 +11,14 @@
                 <div class="content-title">bar</div>
                 <div class="echarts" id="bar"></div>
             </div>
+            <div class="echarts-box">
+                <div class="content-title">line</div>
+                <div class="echarts" id="line"></div>
+            </div>
+            <div class="echarts-box">
+                <div class="content-title">pie</div>
+                <div class="echarts" id="pie"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -33,22 +41,73 @@
                     type: 'bar',
                     data: [5, 20, 36, 10, 10, 20]
                 }]
+            },
+            lineOption: {
+                xAxis: {
+                    type: 'category',
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: 'line'
+                }]
+            },
+            pieOption: {
+                title : {
+                    text: '用户访问来源',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['直接访问','邮件营销','联盟广告','视频广告']
+                },
+                series : [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:335, name:'直接访问'},
+                            {value:310, name:'邮件营销'},
+                            {value:234, name:'联盟广告'},
+                            {value:135, name:'视频广告'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
             }
         }),
         mounted() {
             this.$echarts.init(document.getElementById('bar')).setOption(this.barOption);
+            this.$echarts.init(document.getElementById('line')).setOption(this.lineOption);
+            this.$echarts.init(document.getElementById('pie')).setOption(this.pieOption);
         }
     }
 </script>
 
-<style scoped>
-.echarts-box{
-    display: inline-block;
-    margin: 20px;
-}
+<style lang="scss" scoped>
+    .echarts-box{
+        display: inline-block;
+        margin: 20px;
+    }
     .echarts{
-        width: 500px;
-        height: 400px;
+        width: 300px;
+        height: 300px;
     }
     .content-title{
         clear: both;

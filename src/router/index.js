@@ -69,6 +69,12 @@ export default new Router({
                     path: '/permission',
                     component: resolve => require(['../components/page/Permission.vue'], resolve),
                     meta: { title: '权限测试', permission: true }
+                },
+                {
+                    // 百度地图
+                    path: '/map',
+                    component: resolve => require(['../components/page/BaiduMap.vue'], resolve),
+                    meta: { title: '百度地图'}
                 }
             ]
         },

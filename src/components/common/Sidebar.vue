@@ -84,6 +84,11 @@
                         title: '权限测试'
                     },
                     {
+                        icon: 'el-icon-location',
+                        index: 'map',
+                        title: '百度地图'
+                    },
+                    {
                         icon: 'el-icon-error',
                         index: '404',
                         title: '404页面'
