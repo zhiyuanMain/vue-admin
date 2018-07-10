@@ -1,0 +1,19 @@
+{
+  "name": "vue-admin",
+  "version": "1.0.0",
+  "description": "vue-admin-template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhiyuanMain/vue-admin.git"
+  },
+  "author": "h_xingzhiyuan@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhiyuanMain/vue-admin/issues"
+  },
+  "homepage": "https://github.com/zhiyuanMain/vue-admin#readme"
+}
