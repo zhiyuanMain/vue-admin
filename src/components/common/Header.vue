@@ -38,12 +38,10 @@
     </div>
 </template>
 <script>
-    import bus from '../common/bus';
     import $ from '@/util';
     export default {
         data() {
             return {
-                collapse: false,
                 fullscreen: false,
                 name: 'linxin',
                 message: 2
@@ -59,14 +57,13 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
+                    localStorage.removeItem('ms_username');
                     this.$router.push('/login');
                 }
             },
             // 侧边栏折叠
             collapseChage(){
-                this.collapse = !this.collapse;
-                bus.$emit('collapse', this.collapse);
+                this.$store.dispatch('ToggleSlideBar');
             },
             // 全屏事件
             handleFullScreen(){
@@ -100,9 +97,9 @@
             if(document.body.clientWidth < 1366){
                 this.collapseChage();
             }
-            $.service.ajax.get('/movie/top250', {a: 1}).then(res => {
-                console.log(res)
-            })
+            // $.service.ajax.get('/movie/top250', {a: 1}).then(res => {
+            //     console.log(res)
+            // })
         }
     }
 </script>

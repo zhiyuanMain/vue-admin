@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    import bus from './bus';
     export default {
         data() {
             return {
@@ -66,7 +65,7 @@
                     path: route.fullPath,
                     name: route.matched[1].components.default.name
                 })
-                bus.$emit('tags', this.tagsList);
+                this.$store.dispatch('SetTags', this.tagsList);
             },
             handleTags(command){
                 command === 'other' ? this.closeOther() : this.closeAll();

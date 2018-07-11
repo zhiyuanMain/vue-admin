@@ -40,6 +40,7 @@ Service.ajax.interceptors.response.use(response => {
                 // this.$router.push('/login');
             })
         }
+        return Promise.reject('error');
     }else {
         return response;
     }
