@@ -23,11 +23,11 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
                 <!-- 用户头像 -->
-                <div class="user-avator"><img src="static/img/img.jpg"></div>
+                <div class="user-avator"><img :src="avator"></div>
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        {{username}} <i class="el-icon-caret-bottom"></i>
+                        {{name}} <i class="el-icon-caret-bottom"></i>
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item  command="loginout">退出登录</el-dropdown-item>
@@ -38,20 +38,25 @@
     </div>
 </template>
 <script>
+    import { mapGetters } from 'vuex';
     import $ from '@/util';
     export default {
         data() {
             return {
                 fullscreen: false,
-                name: 'linxin',
+                // name: 'linxin',
                 message: 2
             }
         },
         computed:{
-            username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
-            }
+            ...mapGetters([
+                'name', 
+                'avator'
+            ]),
+            // username(){
+            //     let username = localStorage.getItem('ms_username');
+            //     return username ? username : this.name;
+            // }
         },
         methods:{
             // 用户名下拉菜单选择事件
@@ -97,9 +102,10 @@
             if(document.body.clientWidth < 1366){
                 this.collapseChage();
             }
-            // $.service.ajax.get('/movie/top250', {a: 1}).then(res => {
-            //     console.log(res)
-            // })
+        },
+        created() {
+            // 获取最新数据
+            this.$store.dispatch('GetInfo');
         }
     }
 </script>

@@ -12,7 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-          target:'https://api.douban.com/v2/',
+          // target:'https://api.douban.com/v2/',
+          target:'https://www.easy-mock.com/mock/5b45b4836e221476a4fb71fe',
           changeOrigin:true,
           pathRewrite:{
               '/api':''

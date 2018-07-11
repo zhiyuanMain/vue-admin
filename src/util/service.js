@@ -2,16 +2,15 @@ import axios from 'axios';
 import  { Message, MessageBox } from 'element-ui';
 // const imgPath = 'http://127.0.0.1:8011/img/';
 // const apiPath = 'http://127.0.0.1:8010/';
-const Service = {};
 
 // Ajax 通用配置
-Service.ajax = axios.create({
+const Service = axios.create({
     baseURL: process.env.BASE_API,
     timeout: 5000
 });
 
 // request拦截器
-Service.ajax.interceptors.request.use(config => {
+Service.interceptors.request.use(config => {
     // config.headers['x-token'] = 'token123456';
     return config;
 }, error => {
@@ -19,12 +18,12 @@ Service.ajax.interceptors.request.use(config => {
     Promise.reject(error);
 })
 // 添加响应拦截器
-Service.ajax.interceptors.response.use(response => {
+Service.interceptors.response.use(response => {
     const res = response.data;
     // 根据具体业务修改
-    if(response.status !== 200) {
+    if(res.status !== 200) {
         Message({
-            message: response.statusText,
+            message: res.statusText,
             type: 'error',
             duration: 5000
         })
@@ -42,7 +41,7 @@ Service.ajax.interceptors.response.use(response => {
         }
         return Promise.reject('error');
     }else {
-        return response;
+        return res;
     }
 });
 
