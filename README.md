@@ -17,6 +17,8 @@ npm run build
 ### 使用开源库
 vue系列：vue+vue-router+vuex+axios+element-ui
 
+css预处理技术：[sass](https://www.sass.hk/)
+
 统计表：[Echarts](http://echarts.baidu.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts)
 
 地图：[百度地图](http://lbsyun.baidu.com/index.php?title=jspopular)
