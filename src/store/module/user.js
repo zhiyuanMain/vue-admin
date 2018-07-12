@@ -5,7 +5,9 @@ const user = {
         token: getToken(),
         name: '',
         avator: '',
-        roles: []
+        roles: [],
+        role: '',
+        message: 0
     },
     mutations: {
         SET_TOKEN: (state, token) => {
@@ -19,6 +21,12 @@ const user = {
         },
         SET_ROLES: (state, roles) => {
             state.roles = roles;
+        },
+        SET_ROLE: (state, role) => {
+            state.role = role;
+        },
+        SET_MESSAGE: (state, message) => {
+            state.message = message;
         }
     },
     actions: {
@@ -44,6 +52,8 @@ const user = {
                     commit('SET_NAME', data.name);
                     commit('SET_AVATOR', data.avator);
                     commit('SET_ROLES', data.roles);
+                    commit('SET_ROLE', data.role);
+                    commit('SET_MESSAGE', data.message)
                     resolve(res);
                 }).catch(error => {
                     reject(error);
@@ -62,6 +72,13 @@ const user = {
                 }).catch(error => {
                     reject(error);
                 })
+            })
+        },
+        Fedout: () => {
+            return new Promise((resolve, reject) => {
+                commit('SET_TOKEN', '');
+                removeToken();
+                resolve();
             })
         }
     }

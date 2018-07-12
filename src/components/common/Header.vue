@@ -44,15 +44,14 @@
     export default {
         data() {
             return {
-                fullscreen: false,
-                // name: 'linxin',
-                message: 2
+                fullscreen: false
             }
         },
         computed:{
             ...mapGetters([
                 'name', 
-                'avator'
+                'avator',
+                'message'
             ]),
             // username(){
             //     let username = localStorage.getItem('ms_username');
@@ -63,8 +62,6 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if(command == 'loginout'){
-                    // localStorage.removeItem('ms_username');
-                    // this.$router.push('/login');
                     this.$store.dispatch('Logout').then(res => {
                         window.location.reload();
                     })

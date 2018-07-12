@@ -6,7 +6,7 @@
                     <el-col>
                         <el-card shadow="hover" class="mgb20">
                             <div class="user-info">
-                                <img src="static/img/img.jpg" class="user-avator" alt="">
+                                <img :src="avator" class="user-avator" alt="">
                                 <div class="user-info-cont">
                                     <div class="user-info-name">{{name}}</div>
                                     <div>{{role}}</div>
@@ -98,11 +98,11 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'; 
     export default {
         name: 'dashboard',
         data() {
             return {
-                name: localStorage.getItem('ms_username'),
                 todoList: [
                     {
                         title: '今天要修复100个bug',
@@ -131,9 +131,7 @@
             }
         },
         computed: {
-            role() {
-                return this.name === 'admin' ? '超级管理员' : '普通用户';
-            }
+            ...mapGetters(['name', 'role', 'avator'])
         }
     }
 

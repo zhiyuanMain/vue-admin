@@ -41,7 +41,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$store.dispatch('Login', this.ruleForm).then(() => {
-                            localStorage.setItem('ms_username',this.ruleForm.username);
+                            // localStorage.setItem('ms_username',this.ruleForm.username);
                             this.$message({
                                 message: '登陆成功',
                                 type: 'success'
