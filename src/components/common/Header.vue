@@ -22,6 +22,12 @@
                     </el-tooltip>
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
+                <!-- 锁屏 -->
+                <div class="btn-lock">
+                    <el-tooltip effect="dark" content="锁屏" placement="bottom">
+                        <i class="el-icon-time"></i>
+                    </el-tooltip>
+                </div>
                 <!-- 用户头像 -->
                 <div class="user-avator"><img :src="avator"></div>
                 <!-- 用户名下拉菜单 -->
@@ -103,10 +109,6 @@
             if(document.body.clientWidth < 1366){
                 this.collapseChage();
             }
-        },
-        created() {
-            // // 获取最新数据
-            // this.$store.dispatch('GetInfo');
         }
     }
 </script>
@@ -141,13 +143,16 @@
     }
     .btn-fullscreen{
         transform: rotate(45deg);
-        margin-right: 5px;
+        /* margin-right: 5px; */
         font-size: 24px;
     }
-    .btn-bell, .btn-fullscreen{
+    .btn-bell, 
+    .btn-fullscreen,
+    .btn-lock{
         position: relative;
         width: 30px;
         height: 30px;
+        margin-right: 5px;
         text-align: center;
         border-radius: 15px;
         cursor: pointer;

@@ -68,6 +68,7 @@
 </template>
 
 <script>
+    import $ from '@/util';
     export default {
         name: 'basetable',
         data() {
@@ -124,13 +125,20 @@
             getData() {
                 // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
                 if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
+                    this.url = '/getTableList';
                 };
-                this.$axios.post(this.url, {
+                $.service({
+                    url: this.url,
+                    methods: 'get',
                     page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
+                }).then(res => {
+                    this.tableData = res.list;
                 })
+                // this.$axios.post(this.url, {
+                //     page: this.cur_page
+                // }).then((res) => {
+                //     this.tableData = res.data.list;
+                // })
             },
             search() {
                 this.is_search = true;
