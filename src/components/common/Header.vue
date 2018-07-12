@@ -40,6 +40,7 @@
 <script>
     import { mapGetters } from 'vuex';
     import $ from '@/util';
+    import {removeToken} from '@/util/auth.js'
     export default {
         data() {
             return {
@@ -62,8 +63,11 @@
             // 用户名下拉菜单选择事件
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username');
-                    this.$router.push('/login');
+                    // localStorage.removeItem('ms_username');
+                    // this.$router.push('/login');
+                    this.$store.dispatch('Logout').then(res => {
+                        window.location.reload();
+                    })
                 }
             },
             // 侧边栏折叠
@@ -104,8 +108,8 @@
             }
         },
         created() {
-            // 获取最新数据
-            this.$store.dispatch('GetInfo');
+            // // 获取最新数据
+            // this.$store.dispatch('GetInfo');
         }
     }
 </script>

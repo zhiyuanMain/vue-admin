@@ -1,8 +1,8 @@
-import { login, getInfo } from "@/api/login";
-import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
+import { login, getInfo, logout } from "@/api/login";
+import { getToken, setToken, removeToken } from "@/util/auth";
 const user = {
     state: {
-        token: '',
+        token: getToken(),
         name: '',
         avator: '',
         roles: []
@@ -26,8 +26,10 @@ const user = {
             const username = userInfo.username.trim();
             const pwd = userInfo.pwd;
             return new Promise((resolve, reject) => {
-                login(username, pwd).then(response => {
-                    commit('SET_TOKEN', response.token)
+
+                login(username, pwd).then(res => {
+                    commit('SET_TOKEN', res.token);
+                    setToken(res.token);
                     resolve();
                 }).catch(error => {
                     reject(error);
@@ -36,12 +38,26 @@ const user = {
         },
         GetInfo: ({ commit, state }) => {
             return new Promise((resolve, reject) => {
-                getInfo(state.token).then(response => {
+                getInfo(state.token).then(res => {
                     //将获取的用户信息添加到state中
-                    const data = response;
+                    const data = res;
                     commit('SET_NAME', data.name);
                     commit('SET_AVATOR', data.avator);
                     commit('SET_ROLES', data.roles);
+                    resolve(res);
+                }).catch(error => {
+                    reject(error);
+                })
+            })
+        },
+        Logout: ({ commit, state}) => {
+            return new Promise((resolve, reject) => {
+                logout().then(res => {
+                    commit('SET_NAME', '');
+                    commit('SET_AVATOR', '');
+                    commit('SET_ROLES', []);
+                    commit('SET_TOKEN', '');
+                    removeToken();
                     resolve();
                 }).catch(error => {
                     reject(error);
