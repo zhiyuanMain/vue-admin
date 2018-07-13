@@ -68,7 +68,7 @@
 </template>
 
 <script>
-    import $ from '@/util';
+    import $ from '@/utils';
     export default {
         name: 'basetable',
         data() {
@@ -134,8 +134,10 @@
                     methods: 'get',
                     page: this.cur_page
                 }).then(res => {
-                    this.loading = false;
                     this.tableData = res.list;
+                    setTimeout(() => {
+                        this.loading = false;   
+                    }, 300)
                 })
                 // this.$axios.post(this.url, {
                 //     page: this.cur_page

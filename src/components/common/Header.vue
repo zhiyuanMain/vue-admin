@@ -45,8 +45,8 @@
 </template>
 <script>
     import { mapGetters } from 'vuex';
-    import $ from '@/util';
-    import {removeToken} from '@/util/auth.js'
+    import $ from '@/utils';
+    import {removeToken} from '@/utils/auth.js'
     export default {
         data() {
             return {

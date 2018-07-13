@@ -1,4 +1,4 @@
-import request from '@/util/service';
+import request from '@/utils/service';
 export function login(username, passward) {
     return request({
         url: '/login',
