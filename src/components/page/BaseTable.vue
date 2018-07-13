@@ -15,7 +15,7 @@
                 <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="search" @click="search">搜索</el-button>
             </div>
-            <el-table :data="data" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
+            <el-table :data="data" border v-loading="loading" height="360" style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column prop="date" label="日期" sortable width="150">
                 </el-table-column>
@@ -73,6 +73,7 @@
         name: 'basetable',
         data() {
             return {
+                loading: true,
                 url: './static/vuetable.json',
                 tableData: [],
                 cur_page: 1,
@@ -123,6 +124,7 @@
             },
             // 获取 easy-mock 的模拟数据
             getData() {
+                this.loading = true;
                 // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
                 if (process.env.NODE_ENV === 'development') {
                     this.url = '/getTableList';
@@ -132,6 +134,7 @@
                     methods: 'get',
                     page: this.cur_page
                 }).then(res => {
+                    this.loading = false;
                     this.tableData = res.list;
                 })
                 // this.$axios.post(this.url, {

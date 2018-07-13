@@ -23,11 +23,11 @@
                     <span class="btn-bell-badge" v-if="message"></span>
                 </div>
                 <!-- 锁屏 -->
-                <div class="btn-lock">
+                <!-- <div class="btn-lock">
                     <el-tooltip effect="dark" content="锁屏" placement="bottom">
                         <i class="el-icon-time"></i>
                     </el-tooltip>
-                </div>
+                </div> -->
                 <!-- 用户头像 -->
                 <div class="user-avator"><img :src="avator"></div>
                 <!-- 用户名下拉菜单 -->

@@ -74,7 +74,7 @@ const user = {
                 })
             })
         },
-        Fedout: () => {
+        Fedout: ({ commit }) => {
             return new Promise((resolve, reject) => {
                 commit('SET_TOKEN', '');
                 removeToken();
