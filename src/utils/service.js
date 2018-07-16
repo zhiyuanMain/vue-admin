@@ -6,7 +6,11 @@ import  { Message, MessageBox } from 'element-ui';
 // Ajax 通用配置
 const Service = axios.create({
     baseURL: process.env.BASE_API,
-    timeout: 5000
+    timeout: 5000,
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
 });
 
 // request拦截器
